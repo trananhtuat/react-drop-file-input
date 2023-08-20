@@ -11,6 +11,8 @@ const DropFileInput = props => {
     const wrapperRef = useRef(null);
 
     const [fileList, setFileList] = useState([]);
+    const [assetname, setAssetname] = useState("");
+    const [gametitle, setGametitle] = useState("");
 
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
 
@@ -21,7 +23,7 @@ const DropFileInput = props => {
     const onFileDrop = (e) => {
         const newFile = e.target.files[0];
         if (newFile) {
-            const updatedList = [...fileList, newFile];
+            const updatedList = [newFile];
             setFileList(updatedList);
             props.onFileChange(updatedList);
         }
@@ -70,6 +72,23 @@ const DropFileInput = props => {
                     </div>
                 ) : null
             }
+            <p>Asset Name</p>
+           <input
+    type="text"
+    value={assetname}
+    placeholder="Enter assetname"
+    className="metadata_field"
+    onChange={(e) => setAssetname(e.target.value)}
+/>
+
+            <p>Game Title</p>
+            <input
+            type="text"
+            value={gametitle}
+            placeholder="Enter the game's title"
+            className="metadata_field"
+            onChange={(e) => setGametitle(e.target.value)}
+            />  
         </>
     );
 }
