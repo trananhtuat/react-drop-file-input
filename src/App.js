@@ -1,5 +1,5 @@
 import './App.css';
-import DropFileInput from './components/drop-file-input/DropFileInput';
+import {DropFileInput } from './components/drop-file-input/DropFileInput';
 import UploadButton from './components/upload-button/UploadButton';
 import { useState } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
@@ -9,8 +9,9 @@ import { doc, setDoc, collection, addDoc } from "firebase/firestore"
 
 function App() {
     const [file, setFile] = useState(null);
-    const [assetname, setAssetname] = useState("");
-    const [gametitle, setGametitle] = useState("");
+    const assetname = {assetname};
+    const gametitle = {gametitle};
+    const description = {description};
 
     const onFileChange = (files) => {
         const currentFile = files[0]
@@ -29,12 +30,17 @@ function App() {
         setGametitle(newGametitle); // Correct: Using functional update
     }
 
-    const uploadToDatabase = (url, assetname, gametitle) => { 
+    const onDescriptionChange = (e) => {
+        const newDescription = e.target.value;
+        setDescription(newDescription); // Correct: Using functional update
+    // }
+
+    const uploadToDatabase = (url, assetname, gametitle, description) => { 
         let docData = {
             mostRecentUploadURL: url,
             asset: assetname, 
             game: gametitle,
-            description: "test",
+            description: description,
             carmodel: "test",
             metadata: "test",
         }
@@ -47,6 +53,7 @@ function App() {
             console.log("Document added with ID: ", docRef.id);
             console.log("Assetname: ", assetname);
             console.log("Gametitle: ", gametitle);
+            console.log("Description: ", description);ç
           })
           .catch((error) => {
             console.error("Error adding document: ", error);
@@ -68,7 +75,7 @@ function App() {
         }, () => {
             console.log("success!!")
             getDownloadURL(uploadTask.snapshot.ref).then(downloadURL =>{
-                uploadToDatabase(downloadURL, assetname, gametitle)
+                uploadToDatabase(downloadURL, assetname, gametitle, description)
                 console.log(downloadURL)
             })
         })
@@ -83,11 +90,13 @@ function App() {
              onFileChange={(files) => onFileChange(files)}
              onAssetnameChange={onAssetnameChange} // Check if this is being passed correctly
              onGametitleChange={onGametitleChange} // Check if this is being passed correctly
+             onDescriptionChange={onDescriptionChange} // Check if this is being passed correctly
 />
             <br></br>
             <UploadButton onClick={ () => handleClick()}> </UploadButton>
         </div>
     );
+}
 }
 
 export default App;

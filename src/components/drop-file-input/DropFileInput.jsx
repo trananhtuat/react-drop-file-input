@@ -13,6 +13,7 @@ const DropFileInput = props => {
     const [fileList, setFileList] = useState([]);
     const [assetname, setAssetname] = useState("");
     const [gametitle, setGametitle] = useState("");
+    const [description, setDescription] = useState("");
 
     const onDragEnter = () => wrapperRef.current.classList.add('dragover');
 
@@ -74,21 +75,30 @@ const DropFileInput = props => {
             }
             <p>Asset Name</p>
            <input
-    type="text"
-    value={assetname}
-    placeholder="Enter assetname"
-    className="metadata_field"
-    onChange={(e) => setAssetname(e.target.value)}
+            type="text"
+            value={assetname}
+            placeholder="Enter assetname"
+            className="metadata_field"
+            onChange={(e) => setAssetname(e.target.value)}
 />
 
             <p>Game Title</p>
             <input
             type="text"
-            value={gametitle}
+            value="test8.22"
             placeholder="Enter the game's title"
             className="metadata_field"
             onChange={(e) => setGametitle(e.target.value)}
             />  
+
+        <p>Description</p>
+            <input
+            type="text"
+            value={description}
+            placeholder="Add a description"
+            className="metadata_field"
+            onChange={(e) => setDescription(e.target.value)}
+            />          
         </>
     );
 }
@@ -98,3 +108,4 @@ DropFileInput.propTypes = {
 }
 
 export default DropFileInput;
+
