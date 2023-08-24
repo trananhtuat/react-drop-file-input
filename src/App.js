@@ -1,17 +1,16 @@
 import './App.css';
-import {DropFileInput } from './components/drop-file-input/DropFileInput';
+import DropFileInput from './components/drop-file-input/DropFileInput';
 import UploadButton from './components/upload-button/UploadButton';
 import { useState } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { storage, db } from './firebase';
-import { doc, setDoc, collection, addDoc } from "firebase/firestore"
-
+import { collection, addDoc } from "firebase/firestore"
 
 function App() {
     const [file, setFile] = useState(null);
-    const assetname = {assetname};
-    const gametitle = {gametitle};
-    const description = {description};
+    const [assetname, setAssetname] = useState(""); // Initialize with an empty string
+    const [gametitle, setGametitle] = useState("");
+    const [description, setDescription] = useState("");
 
     const onFileChange = (files) => {
         const currentFile = files[0]
@@ -33,7 +32,7 @@ function App() {
     const onDescriptionChange = (e) => {
         const newDescription = e.target.value;
         setDescription(newDescription); // Correct: Using functional update
-    // }
+    }
 
     const uploadToDatabase = (url, assetname, gametitle, description) => { 
         let docData = {
@@ -53,14 +52,13 @@ function App() {
             console.log("Document added with ID: ", docRef.id);
             console.log("Assetname: ", assetname);
             console.log("Gametitle: ", gametitle);
-            console.log("Description: ", description);ç
+            console.log("Description: ", description);
           })
           .catch((error) => {
             console.error("Error adding document: ", error);
           });
         
     }
-    
 
     const handleClick = () => {
         if (file === null) return;
@@ -91,12 +89,11 @@ function App() {
              onAssetnameChange={onAssetnameChange} // Check if this is being passed correctly
              onGametitleChange={onGametitleChange} // Check if this is being passed correctly
              onDescriptionChange={onDescriptionChange} // Check if this is being passed correctly
-/>
+            />
             <br></br>
-            <UploadButton onClick={ () => handleClick()}> </UploadButton>
+            <UploadButton onClick={() => handleClick()} />
         </div>
     );
-}
 }
 
 export default App;
