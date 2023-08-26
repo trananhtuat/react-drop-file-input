@@ -1,6 +1,7 @@
 import './App.css';
 import DropFileInput from './components/drop-file-input/DropFileInput';
 import UploadButton from './components/upload-button/UploadButton';
+import VideoList from './VideoList';
 import { useState } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { storage, db } from './firebase';
@@ -92,6 +93,7 @@ function App() {
             />
             <br></br>
             <UploadButton onClick={() => handleClick()} />
+            <VideoList />
         </div>
     );
 }
