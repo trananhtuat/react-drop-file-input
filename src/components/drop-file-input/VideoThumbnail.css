@@ -1,0 +1,27 @@
+.video-list-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 20px;
+}
+
+.video-list-item {
+    flex: 0 0 calc(33.33% - 20px); 
+    box-sizing: border-box;
+}
+
+.video-thumbnail {
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    box-sizing: border-box;
+    width: 100%; 
+    max-width: 300px; 
+}
+
+.video-thumbnail video {
+    width: 100%; 
+    height: auto; 
+}
