@@ -37,6 +37,24 @@ const DropFileInput = props => {
         props.onFileChange(updatedList);
     }
 
+    const onAssetnameChange = (e) => {
+        const newAssetname = e.target.value;
+        console.log("New Assetname: ", newAssetname);
+        setAssetname(newAssetname);
+    }
+
+    const onGametitleChange = (e) => {
+        const newGametitle = e.target.value;
+        console.log("New Gametitle: ", newGametitle);
+        setGametitle(newGametitle);
+    }
+
+    const onDescriptionChange = (e) => {
+        const newDescription = e.target.value;
+        console.log("New Description: ", newDescription);
+        setDescription(newDescription);
+    }
+
     return (
         <>
             <div
@@ -74,31 +92,31 @@ const DropFileInput = props => {
                 ) : null
             }
             <p>Asset Name</p>
-           <input
-            type="text"
-            value={assetname}
-            placeholder="Enter assetname"
-            className="metadata_field"
-            onChange={(e) => setAssetname(e.target.value)}
-/>
+            <input
+                type="text"
+                value={assetname}
+                placeholder="Enter assetname"
+                className="metadata_field"
+                onChange={onAssetnameChange}
+            />
 
             <p>Game Title</p>
             <input
-            type="text"
-            value="test8.22"
-            placeholder="Enter the game's title"
-            className="metadata_field"
-            onChange={(e) => setGametitle(e.target.value)}
-            />  
+                type="text"
+                value={gametitle}
+                placeholder="Enter the game's title"
+                className="metadata_field"
+                onChange={onGametitleChange}
+            />
 
-        <p>Description</p>
+            <p>Description</p>
             <input
-            type="text"
-            value={description}
-            placeholder="Add a description"
-            className="metadata_field"
-            onChange={(e) => setDescription(e.target.value)}
-            />          
+                type="text"
+                value={description}
+                placeholder="Add a description"
+                className="metadata_field"
+                onChange={onDescriptionChange}
+            />
         </>
     );
 }
@@ -108,4 +126,5 @@ DropFileInput.propTypes = {
 }
 
 export default DropFileInput;
+
 
